@@ -59,6 +59,5 @@
 (setq-hook! 'js2-mode-hook flycheck-checker 'javascript-eslint)
 
 ;; LSP optimizations
-(setq gc-cons-threshold 400000000)
 (setq read-process-output-max (* 2048 2048)) ;; 4mb
 (setq lsp-idle-delay 0.200)
