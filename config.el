@@ -7,7 +7,7 @@
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets.
 (setq user-full-name "matthieub"
-      user-mail-address "")
+      user-mail-address "matthieu.brouillard.ext@keytradebank.com")
 
 ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
 ;; are the three important ones:
@@ -57,3 +57,8 @@
 
 ;; https://github.com/hlissner/doom-emacs/issues/2068
 (setq-hook! 'js2-mode-hook flycheck-checker 'javascript-eslint)
+
+;; LSP optimizations
+(setq gc-cons-threshold 400000000)
+(setq read-process-output-max (* 2048 2048)) ;; 4mb
+(setq lsp-idle-delay 0.300)
