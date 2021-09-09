@@ -61,3 +61,4 @@
 ;; LSP optimizations
 (setq read-process-output-max (* 2048 2048)) ;; 4mb
 (setq lsp-idle-delay 0.200)
+(setq avy-all-windows t)
