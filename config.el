@@ -33,6 +33,7 @@
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
 (setq doom-theme 'doom-one)
+;;(setq doom-theme 'doom-acario-light)
 
 ;; JetBrains Mono
 (setq doom-font (font-spec :family "JetBrains Mono" :size 13))
@@ -76,7 +77,7 @@
 (setq avy-all-windows t)
 
 ;; Enable prettier on save
-(add-hook 'after-init-hook #'global-prettier-mode)
+;;(add-hook 'after-init-hook #'global-prettier-mode)
 ;;
 ;; To get information about any of these functions/macros, move the cursor over
 ;; the highlighted symbol at press 'K' (non-evil users must press 'C-c c k').
