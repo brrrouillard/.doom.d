@@ -22,7 +22,6 @@
 
 
 (provide 'packages)
-(package! prettier)
 (package! evil-textobj-tree-sitter)
 (package! straight :pin "3eca39d")
 
