@@ -23,9 +23,11 @@
 
 (provide 'packages)
 (package! evil-textobj-tree-sitter)
-(package! straight :pin "3eca39d")
 
 (package! copilot
-  :recipe (:host github :repo "zerolfx/copilot.el" :files ("*.el" "dist")))
+  :recipe (:host github :repo "copilot-emacs/copilot.el" :files ("*.el")))
+
+(package! exec-path-from-shell)
+
 
 ;;; packages.el ends here
