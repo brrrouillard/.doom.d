@@ -71,7 +71,7 @@
 ;; - `map!' for binding new keys
 
 ;; Start maximized
- (add-to-list 'initial-frame-alist '(fullscreen . maximized))
+(add-to-list 'initial-frame-alist '(fullscreen . maximized))
 
 ;; avy all windows
 (setq avy-all-windows t)
@@ -106,8 +106,35 @@
 ;; accept completion from copilot and fallback to company
 (use-package! copilot
   :hook (prog-mode . copilot-mode)
-  :bind (("C-TAB" . 'copilot-accept-completion-by-word)
-         ("C-<tab>" . 'copilot-accept-completion-by-word)
-         :map copilot-completion-map
-         ("<tab>" . 'copilot-accept-completion)
-         ("TAB" . 'copilot-accept-completion)))
+  :bind (:map copilot-completion-map
+              ("<tab>" . 'copilot-accept-completion)
+              ("TAB" . 'copilot-accept-completion)
+              ("C-TAB" . 'copilot-accept-completion-by-word)
+              ("C-<tab>" . 'copilot-accept-completion-by-word)))
+
+;; Prefer Homebrew git, fallback to Xcode, then PATH
+(after! magit
+  (let* ((brew-arm  "/opt/homebrew/bin/git")   ;; Apple Silicon
+         (brew-intel "/usr/local/bin/git")     ;; Intel
+         (xcode     "/Applications/Xcode.app/Contents/Developer/usr/bin/git")
+         (git (cond
+               ((file-exists-p brew-arm)  brew-arm)
+               ((file-exists-p brew-intel) brew-intel)
+               ((file-exists-p xcode)      xcode)
+               (t (or (executable-find "git") "git")))))
+    (setq magit-git-executable git)))
+
+(use-package! exec-path-from-shell
+  :init
+  ;; Make sure it runs as if it were a login shell.
+  (setq exec-path-from-shell-arguments '("-l"))
+  ;; Initialize it ASAP.
+  (exec-path-from-shell-initialize))
+
+(setq vterm-shell "/bin/zsh -l")
+
+;; Display flymake diagnostics at the end of lines instead of the minibuffer
+(setq flymake-show-diagnostics-at-end-of-line t)
+
+;; Full syntax highlighting with treesit
+(setq treesit-font-lock-level 4)
